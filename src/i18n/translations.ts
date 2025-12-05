@@ -37,6 +37,8 @@ export interface Translations {
     copy: string;
     signatureHex: string;
     signatureProof: string;
+    show: string;
+    hide: string;
   };
   history: {
     title: string;
@@ -67,6 +69,8 @@ export interface Translations {
     success: string;
     invalid: string;
     error: string;
+    show: string;
+    hide: string;
   };
   toast: {
     copied: string;
@@ -114,6 +118,8 @@ export const translations: Record<Language, Translations> = {
       copy: 'Copier',
       signatureHex: 'Signature (hex):',
       signatureProof: 'Cette signature prouve que vous êtes le détenteur de ce wallet.',
+      show: 'Afficher',
+      hide: 'Masquer',
     },
     history: {
       title: 'Historique des signatures',
@@ -144,6 +150,8 @@ export const translations: Record<Language, Translations> = {
       success: 'Signature vérifiée avec succès',
       invalid: 'Signature invalide',
       error: 'Erreur lors de la vérification',
+      show: 'Afficher',
+      hide: 'Masquer',
     },
     toast: {
       copied: 'Copié dans le presse-papiers',
@@ -189,6 +197,8 @@ export const translations: Record<Language, Translations> = {
       copy: 'Copy',
       signatureHex: 'Signature (hex):',
       signatureProof: 'This signature proves that you are the owner of this wallet.',
+      show: 'Show',
+      hide: 'Hide',
     },
     history: {
       title: 'Signature history',
@@ -219,6 +229,8 @@ export const translations: Record<Language, Translations> = {
       success: 'Signature verified successfully',
       invalid: 'Invalid signature',
       error: 'Error verifying signature',
+      show: 'Show',
+      hide: 'Hide',
     },
     toast: {
       copied: 'Copied to clipboard',
