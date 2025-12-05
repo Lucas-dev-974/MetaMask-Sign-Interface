@@ -1,36 +1,175 @@
-## Usage
+# SignEthWallet
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
+Application web moderne pour signer des messages avec un wallet Ethereum (MetaMask). Cette application permet de prouver la possession d'un wallet en signant des messages cryptographiquement sécurisés.
 
-This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
+## 🚀 Fonctionnalités
 
+- **Connexion Wallet** : Connexion sécurisée via MetaMask ou tout wallet compatible EIP-1193
+- **Signature de messages** : Signez n'importe quel message pour prouver la possession de votre wallet
+- **Historique** : Conservez un historique de toutes vos signatures (jusqu'à 50 messages)
+- **Multi-langue** : Interface disponible en français et en anglais
+- **Interface moderne** : Design élégant avec TailwindCSS
+- **Responsive** : Fonctionne sur tous les appareils
+
+## 📋 Prérequis
+
+- Node.js (version 16 ou supérieure)
+- Un wallet Ethereum installé (MetaMask recommandé)
+- Un navigateur moderne (Chrome, Firefox, Edge, Safari)
+
+## 🛠️ Installation
+
+1. Clonez le repository :
 ```bash
-$ npm install # or pnpm install or yarn install
+git clone <repository-url>
+cd SignEthWallet
 ```
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+2. Installez les dépendances :
+```bash
+npm install
+# ou
+pnpm install
+# ou
+yarn install
+```
 
-## Available Scripts
+## 🎯 Utilisation
 
-In the project directory, you can run:
+### Mode développement
 
-### `npm run dev` or `npm start`
+Lancez le serveur de développement :
+```bash
+npm run dev
+# ou
+npm start
+```
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+L'application sera accessible sur [http://localhost:3000](http://localhost:3000)
 
-The page will reload if you make edits.<br>
+### Build de production
 
-### `npm run build`
+Créez une version optimisée pour la production :
+```bash
+npm run build
+```
 
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
+Les fichiers seront générés dans le dossier `dist/`.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### Prévisualisation du build
 
-## Deployment
+Pour prévisualiser le build de production :
+```bash
+npm run serve
+```
 
-You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+## 📖 Guide d'utilisation
 
-## This project was created with the [Solid CLI](https://github.com/solidjs-community/solid-cli)
+1. **Connecter votre wallet** :
+   - Cliquez sur "Se connecter à MetaMask"
+   - Autorisez la connexion dans MetaMask
+   - Votre adresse et votre balance s'afficheront
+
+2. **Signer un message** :
+   - Entrez le message que vous souhaitez signer dans le champ texte
+   - Cliquez sur "Signer le message"
+   - Confirmez la signature dans MetaMask
+   - La signature hexadécimale sera générée et sauvegardée
+
+3. **Consulter l'historique** :
+   - Cliquez sur "Afficher" dans la section Historique
+   - Consultez toutes vos signatures précédentes
+   - Copiez les signatures ou messages si nécessaire
+   - Supprimez des entrées individuelles ou tout l'historique
+
+4. **Changer de langue** :
+   - Utilisez le sélecteur de langue en haut à droite
+   - Choisissez entre français et anglais
+
+## 🏗️ Architecture
+
+Le projet est structuré de la manière suivante :
+
+```
+src/
+├── components/      # Composants UI réutilisables
+│   ├── Alert.tsx
+│   ├── Button.tsx
+│   ├── ConnectButton.tsx
+│   ├── History.tsx
+│   ├── LanguageSelector.tsx
+│   ├── MetaMaskWarning.tsx
+│   ├── SignMessage.tsx
+│   └── WalletInfo.tsx
+├── hooks/          # Hooks personnalisés SolidJS
+│   ├── useSignatures.ts
+│   └── useWallet.ts
+├── i18n/           # Internationalisation
+│   ├── context.tsx
+│   └── translations.ts
+├── services/       # Services métier
+│   ├── ethereum.ts
+│   └── storage.ts
+├── types/          # Définitions TypeScript
+│   └── index.ts
+├── utils/          # Fonctions utilitaires
+│   ├── clipboard.ts
+│   └── formatters.ts
+├── App.tsx         # Composant principal
+├── index.tsx       # Point d'entrée
+└── index.css       # Styles globaux
+```
+
+## 🔧 Technologies utilisées
+
+- **SolidJS** : Framework réactif moderne et performant
+- **TypeScript** : Typage statique pour une meilleure sécurité
+- **Vite** : Build tool rapide et moderne
+- **TailwindCSS** : Framework CSS utilitaire
+- **EIP-1193** : Standard pour l'interaction avec les wallets Ethereum
+
+## 🔒 Sécurité
+
+- ✅ Validation stricte des adresses Ethereum
+- ✅ Validation des messages avant signature
+- ✅ Gestion sécurisée des erreurs
+- ✅ Aucune clé privée n'est stockée ou transmise
+- ✅ Conformité avec les standards EIP-1193
+
+## 📝 Notes importantes
+
+- Les signatures sont stockées localement dans le navigateur (localStorage)
+- L'historique est limité à 50 messages par adresse
+- Les signatures sont uniques et prouvent la possession du wallet
+- L'application fonctionne uniquement avec des wallets compatibles EIP-1193
+
+## 🐛 Dépannage
+
+### MetaMask n'est pas détecté
+- Assurez-vous que MetaMask est installé et activé
+- Rafraîchissez la page après l'installation
+- Vérifiez que MetaMask est déverrouillé
+
+### La connexion échoue
+- Vérifiez que MetaMask est déverrouillé
+- Autorisez l'accès au site dans les paramètres MetaMask
+- Essayez de vous reconnecter
+
+### La signature échoue
+- Vérifiez que votre wallet est connecté
+- Assurez-vous que le message n'est pas vide
+- Vérifiez que vous confirmez la transaction dans MetaMask
+
+## 📄 Licence
+
+MIT
+
+## 🤝 Contribution
+
+Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou une pull request.
+
+## 🔗 Liens utiles
+
+- [SolidJS Documentation](https://www.solidjs.com/)
+- [MetaMask Documentation](https://docs.metamask.io/)
+- [EIP-1193 Specification](https://eips.ethereum.org/EIPS/eip-1193)

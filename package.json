@@ -1,7 +1,7 @@
 {
-  "name": "vite-template-solid",
-  "version": "0.0.0",
-  "description": "",
+  "name": "sign-eth-wallet",
+  "version": "1.0.0",
+  "description": "Application web pour signer des messages avec un wallet Ethereum (MetaMask)",
   "type": "module",
   "scripts": {
     "start": "vite",
