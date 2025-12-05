@@ -2,6 +2,12 @@
 
 Application web moderne pour signer des messages avec un wallet Ethereum (MetaMask). Cette application permet de prouver la possession d'un wallet en signant des messages cryptographiquement sécurisés.
 
+## 🌐 Application en ligne
+
+**🔗 [Accéder à l'application](https://meta-mask-sign-interface.vercel.app/)**
+
+L'application est déployée et accessible en ligne sur Vercel.
+
 ## 🚀 Fonctionnalités
 
 - **Connexion Wallet** : Connexion sécurisée via MetaMask ou tout wallet compatible EIP-1193
