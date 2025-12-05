@@ -63,6 +63,86 @@ Pour prévisualiser le build de production :
 npm run serve
 ```
 
+## 🚀 Déploiement sur Vercel
+
+### Méthode 1 : Via l'interface Vercel (Recommandé)
+
+1. **Préparer le repository**
+   - Assurez-vous que votre code est poussé sur GitHub, GitLab ou Bitbucket
+   - Vérifiez que le fichier `vercel.json` est présent dans le projet
+
+2. **Créer un compte Vercel**
+   - Allez sur [vercel.com](https://vercel.com)
+   - Créez un compte ou connectez-vous
+
+3. **Importer le projet**
+   - Cliquez sur "Add New Project"
+   - Importez votre repository Git
+   - Vercel détectera automatiquement les paramètres (Vite)
+
+4. **Configurer le projet**
+   - **Framework Preset** : Vite (détecté automatiquement)
+   - **Build Command** : `npm run build` (déjà configuré dans vercel.json)
+   - **Output Directory** : `dist` (déjà configuré dans vercel.json)
+   - **Install Command** : `npm install` (déjà configuré dans vercel.json)
+
+5. **Déployer**
+   - Cliquez sur "Deploy"
+   - Attendez la fin du build (quelques minutes)
+   - Votre application sera accessible via une URL Vercel
+
+### Méthode 2 : Via la CLI Vercel
+
+1. **Installer la CLI Vercel**
+   ```bash
+   npm install -g vercel
+   ```
+
+2. **Se connecter à Vercel**
+   ```bash
+   vercel login
+   ```
+
+3. **Déployer depuis le répertoire du projet**
+   ```bash
+   vercel
+   ```
+
+4. **Pour un déploiement en production**
+   ```bash
+   vercel --prod
+   ```
+
+### Configuration automatique
+
+Le fichier `vercel.json` est déjà configuré avec :
+- ✅ Build command : `npm run build`
+- ✅ Output directory : `dist`
+- ✅ Framework : Vite
+- ✅ Rewrites pour le routing SPA
+
+### Variables d'environnement
+
+Si vous avez besoin de variables d'environnement :
+1. Allez dans les paramètres du projet sur Vercel
+2. Section "Environment Variables"
+3. Ajoutez vos variables (ex: `VITE_API_URL`, etc.)
+
+### Domaine personnalisé
+
+Pour ajouter un domaine personnalisé :
+1. Allez dans les paramètres du projet
+2. Section "Domains"
+3. Ajoutez votre domaine
+4. Suivez les instructions DNS
+
+### Déploiements automatiques
+
+Vercel déploie automatiquement :
+- ✅ Chaque push sur `main` → Production
+- ✅ Chaque pull request → Preview deployment
+- ✅ Chaque branche → Preview deployment
+
 ## 📖 Guide d'utilisation
 
 1. **Connecter votre wallet** :
