@@ -10,6 +10,8 @@ import Alert from './components/Alert';
 import MetaMaskWarning from './components/MetaMaskWarning';
 import Button from './components/Button';
 import LanguageSelector from './components/LanguageSelector';
+import VerifySignature from './components/VerifySignature';
+import Toast from './components/Toast';
 
 const App: Component = () => {
   const { t } = useI18n();
@@ -23,6 +25,7 @@ const App: Component = () => {
 
   return (
     <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+      <Toast />
       <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-2xl">
         <LanguageSelector />
 
@@ -62,6 +65,8 @@ const App: Component = () => {
               onDelete={signatures.deleteSignedMessage}
               onClearAll={signatures.clearAllSignedMessages}
             />
+
+            <VerifySignature />
 
             <Button onClick={handleDisconnect} variant="secondary" class="w-full">
               {t().wallet.disconnect}

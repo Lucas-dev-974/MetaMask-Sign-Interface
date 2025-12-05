@@ -5,6 +5,7 @@ import 'solid-devtools';
 
 import App from './App';
 import { I18nProvider } from './i18n/context';
+import { ToastProvider } from './hooks/useToast';
 
 const root = document.getElementById('root');
 
@@ -16,6 +17,8 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
 
 render(() => (
   <I18nProvider>
-    <App />
+    <ToastProvider>
+      <App />
+    </ToastProvider>
   </I18nProvider>
 ), root!);

@@ -9,10 +9,12 @@ import {
 } from '../services/storage';
 import { signMessage as signMessageService } from '../services/ethereum';
 import { useI18n } from '../i18n/context';
+import { useToast } from './useToast';
 import { isValidMessage } from '../utils/formatters';
 
 export const useSignatures = (account: () => string | null) => {
   const { t } = useI18n();
+  const { showToast } = useToast();
   const [signedMessages, setSignedMessages] = createSignal<SignedMessage[]>([]);
   const [message, setMessage] = createSignal<string>('');
   const [signature, setSignature] = createSignal<string>('');
@@ -60,6 +62,7 @@ export const useSignatures = (account: () => string | null) => {
         setSignature(sig);
         saveMessage(messageText, sig, currentAccount);
         loadMessages();
+        showToast(t().toast.signatureSaved, 'success');
       }
     } catch (err: unknown) {
       const error = err as EthereumError;
@@ -78,12 +81,14 @@ export const useSignatures = (account: () => string | null) => {
   const deleteSignedMessage = (id: string) => {
     deleteMessage(id);
     loadMessages();
+    showToast(t().toast.messageDeleted, 'success');
   };
 
   const clearAllSignedMessages = () => {
     if (confirm(t().history.clearConfirm)) {
       clearAll(account());
       loadMessages();
+      showToast(t().toast.historyCleared, 'success');
     }
   };
 

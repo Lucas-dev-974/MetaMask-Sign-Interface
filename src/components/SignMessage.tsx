@@ -3,6 +3,7 @@ import Button from './Button';
 import Alert from './Alert';
 import { copyToClipboard } from '../utils/clipboard';
 import { useI18n } from '../i18n/context';
+import { useToast } from '../hooks/useToast';
 
 interface SignMessageProps {
   message: string;
@@ -15,6 +16,7 @@ interface SignMessageProps {
 
 const SignMessage: Component<SignMessageProps> = (props) => {
   const { t } = useI18n();
+  const { showToast } = useToast();
 
   return (
     <div class="border-t border-gray-200 pt-4 mt-4">
@@ -50,7 +52,12 @@ const SignMessage: Component<SignMessageProps> = (props) => {
             <div class="flex items-center justify-between mb-2">
               <p class="text-xs text-indigo-600 font-medium">{t().signature.success}</p>
               <button
-                onClick={() => copyToClipboard(props.signature)}
+                onClick={async () => {
+                  const success = await copyToClipboard(props.signature);
+                  if (success) {
+                    showToast(t().toast.copied, 'success');
+                  }
+                }}
                 class="text-xs text-indigo-600 hover:text-indigo-800 underline"
               >
                 {t().signature.copy}

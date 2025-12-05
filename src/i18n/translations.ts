@@ -14,6 +14,7 @@ export interface Translations {
     address: string;
     balance: string;
     chainId: string;
+    network: string;
   };
   errors: {
     metamaskNotInstalled: string;
@@ -49,6 +50,30 @@ export interface Translations {
     viewFullSignature: string;
     clearConfirm: string;
   };
+  verification: {
+    title: string;
+    messageLabel: string;
+    messagePlaceholder: string;
+    signatureLabel: string;
+    signaturePlaceholder: string;
+    addressLabel: string;
+    addressPlaceholder: string;
+    verifyButton: string;
+    verifying: string;
+    clear: string;
+    allFieldsRequired: string;
+    validSignature: string;
+    invalidSignature: string;
+    success: string;
+    invalid: string;
+    error: string;
+  };
+  toast: {
+    copied: string;
+    signatureSaved: string;
+    messageDeleted: string;
+    historyCleared: string;
+  };
 }
 
 export const translations: Record<Language, Translations> = {
@@ -66,6 +91,7 @@ export const translations: Record<Language, Translations> = {
       address: 'Adresse du wallet',
       balance: 'Balance',
       chainId: 'Chain ID',
+      network: 'Réseau',
     },
     errors: {
       metamaskNotInstalled: "MetaMask n'est pas installé. Veuillez l'installer depuis https://metamask.io/",
@@ -101,6 +127,30 @@ export const translations: Record<Language, Translations> = {
       viewFullSignature: 'Voir la signature complète',
       clearConfirm: 'Êtes-vous sûr de vouloir supprimer tout l\'historique des signatures ?',
     },
+    verification: {
+      title: 'Vérification de signature',
+      messageLabel: 'Message original',
+      messagePlaceholder: 'Entrez le message original...',
+      signatureLabel: 'Signature',
+      signaturePlaceholder: 'Entrez la signature hexadécimale (0x...)',
+      addressLabel: 'Adresse Ethereum',
+      addressPlaceholder: '0x...',
+      verifyButton: 'Vérifier',
+      verifying: 'Vérification...',
+      clear: 'Effacer',
+      allFieldsRequired: 'Tous les champs sont requis',
+      validSignature: '✓ Signature valide ! Cette signature correspond à l\'adresse et au message.',
+      invalidSignature: '✗ Signature invalide. La signature ne correspond pas à l\'adresse ou au message.',
+      success: 'Signature vérifiée avec succès',
+      invalid: 'Signature invalide',
+      error: 'Erreur lors de la vérification',
+    },
+    toast: {
+      copied: 'Copié dans le presse-papiers',
+      signatureSaved: 'Signature sauvegardée',
+      messageDeleted: 'Message supprimé',
+      historyCleared: 'Historique supprimé',
+    },
   },
   en: {
     app: {
@@ -116,6 +166,7 @@ export const translations: Record<Language, Translations> = {
       address: 'Wallet address',
       balance: 'Balance',
       chainId: 'Chain ID',
+      network: 'Network',
     },
     errors: {
       metamaskNotInstalled: 'MetaMask is not installed. Please install it from https://metamask.io/',
@@ -150,6 +201,30 @@ export const translations: Record<Language, Translations> = {
       delete: 'Delete',
       viewFullSignature: 'View full signature',
       clearConfirm: 'Are you sure you want to delete all signature history?',
+    },
+    verification: {
+      title: 'Signature verification',
+      messageLabel: 'Original message',
+      messagePlaceholder: 'Enter the original message...',
+      signatureLabel: 'Signature',
+      signaturePlaceholder: 'Enter the hexadecimal signature (0x...)',
+      addressLabel: 'Ethereum address',
+      addressPlaceholder: '0x...',
+      verifyButton: 'Verify',
+      verifying: 'Verifying...',
+      clear: 'Clear',
+      allFieldsRequired: 'All fields are required',
+      validSignature: '✓ Valid signature! This signature matches the address and message.',
+      invalidSignature: '✗ Invalid signature. The signature does not match the address or message.',
+      success: 'Signature verified successfully',
+      invalid: 'Invalid signature',
+      error: 'Error verifying signature',
+    },
+    toast: {
+      copied: 'Copied to clipboard',
+      signatureSaved: 'Signature saved',
+      messageDeleted: 'Message deleted',
+      historyCleared: 'History cleared',
     },
   },
 };

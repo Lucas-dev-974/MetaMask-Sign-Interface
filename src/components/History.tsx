@@ -3,6 +3,7 @@ import type { SignedMessage } from '../types';
 import { formatDate } from '../utils/formatters';
 import { copyToClipboard } from '../utils/clipboard';
 import { useI18n } from '../i18n/context';
+import { useToast } from '../hooks/useToast';
 
 interface HistoryProps {
   messages: SignedMessage[];
@@ -14,6 +15,7 @@ interface HistoryProps {
 
 const History: Component<HistoryProps> = (props) => {
   const { t, language } = useI18n();
+  const { showToast } = useToast();
   const locale = () => language() === 'fr' ? 'fr-FR' : 'en-US';
 
   return (
@@ -63,14 +65,24 @@ const History: Component<HistoryProps> = (props) => {
                       </p>
                       <div class="flex items-center gap-2 flex-wrap">
                         <button
-                          onClick={() => copyToClipboard(signedMsg.signature)}
+                          onClick={async () => {
+                            const success = await copyToClipboard(signedMsg.signature);
+                            if (success) {
+                              showToast(t().toast.copied, 'success');
+                            }
+                          }}
                           class="text-xs text-indigo-600 hover:text-indigo-800 underline"
                         >
                           {t().history.copySignature}
                         </button>
                         <span class="text-gray-300">|</span>
                         <button
-                          onClick={() => copyToClipboard(signedMsg.message)}
+                          onClick={async () => {
+                            const success = await copyToClipboard(signedMsg.message);
+                            if (success) {
+                              showToast(t().toast.copied, 'success');
+                            }
+                          }}
                           class="text-xs text-indigo-600 hover:text-indigo-800 underline"
                         >
                           {t().history.copyMessage}

@@ -1,6 +1,36 @@
+/**
+ * Formate une balance Ethereum avec des unités intelligentes (K, M, G, T)
+ * @param balance - La balance en Wei (format hexadécimal ou décimal)
+ * @returns La balance formatée avec unité appropriée
+ */
 export const formatBalance = (balance: string): string => {
-  const eth = parseFloat(balance) / 1e18;
-  return eth.toFixed(4);
+  try {
+    // Convertir la balance hexadécimale en BigInt
+    let balanceBigInt: bigint;
+    
+    if (balance.startsWith('0x')) {
+      balanceBigInt = BigInt(balance);
+    } else {
+      // Si c'est déjà un nombre décimal, le convertir
+      balanceBigInt = BigInt(balance);
+    }
+    
+    // Convertir en ETH (diviser par 10^18)
+    // Utiliser une méthode qui préserve la précision
+    const ethValue = Number(balanceBigInt) / 1e18;
+    
+    if (ethValue === 0) return '0';
+    if (ethValue < 0.0001) return '< 0.0001';
+    if (ethValue < 1) return ethValue.toFixed(4);
+    if (ethValue < 1000) return ethValue.toFixed(4);
+    if (ethValue < 1000000) return `${(ethValue / 1000).toFixed(2)}K`;
+    if (ethValue < 1000000000) return `${(ethValue / 1000000).toFixed(2)}M`;
+    if (ethValue < 1000000000000) return `${(ethValue / 1000000000).toFixed(2)}G`;
+    return `${(ethValue / 1000000000000).toFixed(2)}T`;
+  } catch (error) {
+    console.error('Error formatting balance:', error);
+    return '0';
+  }
 };
 
 export const formatAddress = (address: string): string => {
